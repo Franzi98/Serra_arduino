@@ -41,18 +41,14 @@ void setup() {
 void loop() {
   umidita=analogRead(sensore_uno);
   umidita=map(umidita, 1023, 275, 0 , 100);
-  if (umidita<55) {
-    statorele=HIGH;
-    Serial.print("Umidità:");
-    Serial.print(umidita);
-    Serial.println("%");
-    stato_giorno();
+  stato_giorno();
+  if (umidita<55 || GIORNO=true) {
+    statorele=HIGH,
     Serial.println(luce);
     Serial.println(GIORNO);
     stato_pompa();
     infoschermo();
-    
-  }
+    }
    else {
     digitalWrite(rele,HIGH);
     statorele=LOW;
